@@ -70,9 +70,9 @@ function App() {
           <p className="ttt-status" role="status">
             {result
               ? (result === 'Draw'
-                  ? <span style={{ color: 'var(--accent)' }}>Draw!</span>
-                  : <span style={{ color: 'var(--primary)' }}>Winner: {result}</span>)
-              : <span>Next player: <span style={{ color: 'var(--primary)', fontWeight: 500 }}>{currentPlayer}</span></span>
+                  ? <span style={{ color: 'var(--accent)', fontWeight: 700 }}>Draw!</span>
+                  : <span style={{ color: 'var(--accent)', fontWeight: 700 }}>Winner: {result}</span>)
+              : <span>Next player: <span style={{ color: 'var(--primary)', fontWeight: 600 }}>{currentPlayer}</span></span>
             }
           </p>
         </header>
