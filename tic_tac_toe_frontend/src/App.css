@@ -1,104 +1,186 @@
-/* CSS Variables for Theme Management */
+/* Minimalistic, responsive Tic Tac Toe theme with provided palette */
+
 :root {
-  /* Light theme colors */
-  --bg-primary: #ffffff;
-  --bg-secondary: #f8f9fa;
-  --text-primary: #282c34;
-  --text-secondary: #61dafb;
-  --border-color: #e9ecef;
-  --button-bg: #007bff;
-  --button-text: #ffffff;
+  --primary: #1976d2;
+  --secondary: #ffffff;
+  --accent: #ff5722;
+  --ttt-board-bg: var(--secondary);
+  --ttt-board-border: #e0e0e0;
+  --ttt-cell-shadow: 0 1px 5px rgba(25, 118, 210, 0.05);
+  --ttt-status-bg: #fffdf9;
 }
 
-[data-theme="dark"] {
-  /* Dark theme colors */
-  --bg-primary: #1a1a1a;
-  --bg-secondary: #282c34;
-  --text-primary: #ffffff;
-  --text-secondary: #61dafb;
-  --border-color: #404040;
-  --button-bg: #0056b3;
-  --button-text: #ffffff;
+body {
+  background: var(--secondary);
+  color: var(--primary);
 }
 
 .App {
-  text-align: center;
-  background-color: var(--bg-primary);
-  color: var(--text-primary);
   min-height: 100vh;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  background: var(--secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 
+    'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: var(--bg-secondary);
-  min-height: 100vh;
+/* Container for centralizing the content */
+.ttt-container {
+  background: var(--ttt-board-bg);
+  border-radius: 16px;
+  padding: 32px 24px 24px 24px;
+  box-shadow: 0 4px 24px 0 rgba(25, 118, 210, 0.09);
+  width: 375px;
+  max-width: 95vw;
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin: 36px auto;
+}
+
+/* Minimal title styling */
+.ttt-title {
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0 0 8px 0;
+  letter-spacing: 1px;
+  color: var(--primary);
+}
+
+/* Status indicator styling */
+.ttt-status {
+  font-size: 1.15rem;
+  font-weight: 500;
+  margin-bottom: 18px;
+  margin-top: 2px;
+  padding: 8px 0 6px 0;
+  border-radius: 6px;
+  background: var(--ttt-status-bg);
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 1px 4px 0 rgba(136, 136, 136, 0.04);
+}
+
+.ttt-board {
+  display: grid;
+  grid-template-columns: repeat(3, 62px);
+  grid-template-rows: repeat(3, 62px);
+  gap: 10px;
+  margin: 0 auto;
+  background: var(--ttt-board-bg);
+  border: 2px solid var(--primary);
+  border-radius: 12px;
+  box-shadow: 0 2px 8px 0 rgba(25, 118, 210, 0.04);
+}
+
+.ttt-cell {
+  display: flex;
+  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: var(--text-primary);
-  transition: background-color 0.3s ease;
-  position: relative;
+  font-size: 1.65rem;
+  font-family: inherit;
+  color: var(--primary);
+  background: var(--secondary);
+  border: 1.2px solid var(--ttt-board-border);
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.12s, color 0.12s, box-shadow 0.14s;
+  box-shadow: var(--ttt-cell-shadow);
+  outline: none;
+  min-width: 0;
+  height: 60px;
+  width: 60px;
+  padding: 0;
+  margin: 0;
 }
 
-.App-link {
-  color: var(--text-secondary);
-  transition: color 0.3s ease;
+.ttt-cell:hover:not(:disabled),
+.ttt-cell:focus-visible:not(:disabled) {
+  background: #f4fbfe;
+  color: var(--accent);
 }
 
-.theme-toggle {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  background-color: var(--button-bg);
-  color: var(--button-text);
+.ttt-cell:disabled {
+  cursor: not-allowed;
+  background: #f1f1f1;
+  color: #bbb;
+}
+
+.ttt-actions {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: 18px;
+}
+
+.ttt-reset-btn {
+  min-width: 104px;
+  background: var(--accent);
+  color: #fff;
   border: none;
   border-radius: 8px;
-  padding: 10px 20px;
-  font-size: 14px;
-  font-weight: 600;
+  padding: 10px 0;
+  font-size: 1.04rem;
+  font-weight: 700;
   cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 8px rgba(255, 87, 34, 0.08);
+  transition: background 0.13s, box-shadow 0.15s;
+  margin: 0 8px;
 }
 
-.theme-toggle:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-  opacity: 0.9;
+.ttt-reset-btn:hover, .ttt-reset-btn:focus {
+  background: #ff784e;
+  box-shadow: 0 4px 16px rgba(255, 87, 34, 0.16);
 }
 
-.theme-toggle:active {
-  transform: translateY(0);
+.ttt-header {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+/* Placeholder block for reviewer features */
+.ttt-placeholders {
+  margin-top: 24px;
+  color: #979797;
+  font-size: 0.99rem;
+  width: 100%;
+  text-align: left;
+}
+.ttt-placeholders ul {
+  padding-left: 18px;
+}
+.ttt-placeholders li {
+  margin-bottom: 2px;
+}
+
+@media (max-width: 540px) {
+  .ttt-container {
+    padding: 12vw 1vw;
+    width: 98vw;
   }
-  to {
-    transform: rotate(360deg);
+  .ttt-board {
+    grid-template-columns: repeat(3, 24vw);
+    grid-template-rows: repeat(3, 24vw);
   }
-}
-
-/* Responsive design for mobile */
-@media (max-width: 768px) {
-  .theme-toggle {
-    top: 10px;
-    right: 10px;
-    padding: 8px 16px;
-    font-size: 12px;
+  .ttt-cell {
+    font-size: 1.1rem;
+    height: 22vw;
+    width: 22vw;
+    padding: 0;
+  }
+  .ttt-actions {
+    margin-top: 11px;
+  }
+  .ttt-status {
+    font-size: 1rem;
+    margin-bottom: 10px;
+    padding: 7px 0 5px 0;
+  }
+  .ttt-title {
+    font-size: 1.36rem;
   }
 }
