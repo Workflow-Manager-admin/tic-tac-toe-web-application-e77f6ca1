@@ -1,18 +1,23 @@
-/* Minimalistic, responsive Tic Tac Toe theme with provided palette */
-
 :root {
-  --primary: #1976d2;
-  --secondary: #ffffff;
-  --accent: #ff5722;
-  --ttt-board-bg: var(--secondary);
-  --ttt-board-border: #e0e0e0;
-  --ttt-cell-shadow: 0 1px 5px rgba(25, 118, 210, 0.05);
-  --ttt-status-bg: #fffdf9;
+  /* Centralized theme variables for dark mode */
+  --primary: #90caf9;        /* Light Blue (main accent for board, X/O, etc.) */
+  --primary-dark: #1976d2;   /* Deep blue for interactive accents */
+  --secondary: #22252c;      /* Dark background */
+  --secondary-alt: #181a20;  /* Even darker surface */
+  --accent: #ffb74d;         /* Bright orange for highlights/winner/draw */
+  --ttt-board-bg: #23252c;
+  --ttt-board-border: #263043;
+  --ttt-cell-bg: #181a20;
+  --ttt-cell-shadow: 0 1px 5px rgba(30, 99, 237, 0.11);
+  --ttt-status-bg: #232530;
+  --text-color: #fff;
+  --text-secondary: #b3b3bc;
+  --border-color: #34384a;
 }
 
 body {
   background: var(--secondary);
-  color: var(--primary);
+  color: var(--text-color);
 }
 
 .App {
@@ -21,16 +26,15 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu',
     'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
 }
 
-/* Container for centralizing the content */
 .ttt-container {
-  background: var(--ttt-board-bg);
+  background: var(--secondary-alt);
   border-radius: 16px;
   padding: 32px 24px 24px 24px;
-  box-shadow: 0 4px 24px 0 rgba(25, 118, 210, 0.09);
+  box-shadow: 0 4px 32px 2px rgba(30, 99, 237, 0.09);
   width: 375px;
   max-width: 95vw;
   display: flex;
@@ -39,16 +43,15 @@ body {
   margin: 36px auto;
 }
 
-/* Minimal title styling */
 .ttt-title {
   font-size: 2rem;
   font-weight: 700;
   margin: 0 0 8px 0;
   letter-spacing: 1px;
   color: var(--primary);
+  text-shadow: 0 2px 8px #222a3b77;
 }
 
-/* Status indicator styling */
 .ttt-status {
   font-size: 1.15rem;
   font-weight: 500;
@@ -59,7 +62,8 @@ body {
   background: var(--ttt-status-bg);
   width: 100%;
   text-align: center;
-  box-shadow: 0 1px 4px 0 rgba(136, 136, 136, 0.04);
+  color: var(--text-color);
+  box-shadow: 0 1px 4px 0 rgba(36,34,46,0.09);
 }
 
 .ttt-board {
@@ -71,7 +75,7 @@ body {
   background: var(--ttt-board-bg);
   border: 2px solid var(--primary);
   border-radius: 12px;
-  box-shadow: 0 2px 8px 0 rgba(25, 118, 210, 0.04);
+  box-shadow: 0 2px 8px 0 rgba(30, 99, 237, 0.07);
 }
 
 .ttt-cell {
@@ -81,7 +85,7 @@ body {
   font-size: 1.65rem;
   font-family: inherit;
   color: var(--primary);
-  background: var(--secondary);
+  background: var(--ttt-cell-bg);
   border: 1.2px solid var(--ttt-board-border);
   border-radius: 8px;
   cursor: pointer;
@@ -98,14 +102,14 @@ body {
 
 .ttt-cell:hover:not(:disabled),
 .ttt-cell:focus-visible:not(:disabled) {
-  background: #f4fbfe;
+  background: #22304a;
   color: var(--accent);
 }
 
 .ttt-cell:disabled {
   cursor: not-allowed;
-  background: #f1f1f1;
-  color: #bbb;
+  background: #22262d;
+  color: #4e5566;
 }
 
 .ttt-actions {
@@ -118,21 +122,22 @@ body {
 .ttt-reset-btn {
   min-width: 104px;
   background: var(--accent);
-  color: #fff;
+  color: #22252c;
   border: none;
   border-radius: 8px;
   padding: 10px 0;
   font-size: 1.04rem;
   font-weight: 700;
   cursor: pointer;
-  box-shadow: 0 2px 8px rgba(255, 87, 34, 0.08);
-  transition: background 0.13s, box-shadow 0.15s;
+  box-shadow: 0 2px 8px rgba(255, 183, 77, 0.11);
+  transition: background 0.13s, box-shadow 0.15s, color 0.13s;
   margin: 0 8px;
 }
 
 .ttt-reset-btn:hover, .ttt-reset-btn:focus {
-  background: #ff784e;
-  box-shadow: 0 4px 16px rgba(255, 87, 34, 0.16);
+  background: #ffd27a;
+  color: #111;
+  box-shadow: 0 4px 16px rgba(255, 183, 77, 0.21);
 }
 
 .ttt-header {
@@ -145,7 +150,7 @@ body {
 /* Placeholder block for reviewer features */
 .ttt-placeholders {
   margin-top: 24px;
-  color: #979797;
+  color: var(--text-secondary);
   font-size: 0.99rem;
   width: 100%;
   text-align: left;
